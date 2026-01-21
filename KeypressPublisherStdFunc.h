@@ -1,5 +1,5 @@
-#ifndef __KEYPRESS_PUBLISHER
-#define __KEYPRESS_PUBLISHER
+#ifndef __KEYPRESS_PUBLISHER_STD_FUNC
+#define __KEYPRESS_PUBLISHER_STD_FUNC
 
 /**
  * GNU GENERAL PUBLIC LICENSE
@@ -15,14 +15,14 @@
 #include <thread>
 #include <functional>
 
-class KeypressPublisher
+class KeypressPublisherStdFunc
 {
 
 public:
     virtual void start() {
 	if (uthread.joinable()) uthread.join();
 	if (running) return;
-	uthread = std::thread(&KeypressPublisher::worker,this);
+	uthread = std::thread(&KeypressPublisherStdFunc::worker,this);
     }
 
     virtual void stop() {
@@ -30,7 +30,7 @@ public:
 	if (uthread.joinable()) uthread.join();
     }
 
-    virtual ~KeypressPublisher() {
+    virtual ~KeypressPublisherStdFunc() {
 	stop();
     }
 
@@ -40,10 +40,6 @@ public:
         callbackFunction = cf;
     }
     
-    inline void timerEvent() {
-        callbackFunction();
-    }
-
 private:
     CallbackFunction callbackFunction;
     bool running = false;

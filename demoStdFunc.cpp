@@ -1,8 +1,8 @@
 #include <stdio.h>
-#include "KeypressPublisher.h"
+#include "KeypressPublisherStdFunc.h"
 #include <unistd.h>
 
-class KeypressSubscriber {
+class KeypressSubscriberStdFunc {
 public:
     void keyevent() {
 	fprintf(stdout,"Buh! ");
@@ -11,8 +11,8 @@ public:
 };
 
 int main( int, const char**) {
-	KeypressPublisher keypressPublisher;
-	KeypressSubscriber keypressSubscriber;
+	KeypressPublisherStdFunc keypressPublisher;
+	KeypressSubscriberStdFunc keypressSubscriber;
 	keypressPublisher.registerEventCallback(
 	    [&](){keypressSubscriber.keyevent();}
 	    );
@@ -21,10 +21,10 @@ int main( int, const char**) {
 
 	printf("Press return to trigger an event.\n");
 
-	// need to implement ctrl-c here really!
+	// do nothing. All done in the publisher.
 	while (true) {
 	    std::this_thread::sleep_for(std::chrono::seconds(60));
 	}
 
-	printf("\n");
+	printf("\nAll done.\n");
 }

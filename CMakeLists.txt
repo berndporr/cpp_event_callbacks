@@ -8,4 +8,5 @@ set (CMAKE_CXX_STANDARD 20)
 add_compile_options(-Wall -Wconversion -Wextra -pedantic)
 include(GNUInstallDirs)
 
-add_executable(demo demo.cpp)
+add_executable(demoStdFunc demoStdFunc.cpp)
+add_executable(demoInterface demoInterface.cpp)
