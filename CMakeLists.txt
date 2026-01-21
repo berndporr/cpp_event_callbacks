@@ -10,3 +10,4 @@ include(GNUInstallDirs)
 
 add_executable(demoStdFunc demoStdFunc.cpp)
 add_executable(demoInterface demoInterface.cpp)
+add_executable(demo_blockingio demo_blockingio.cpp)
